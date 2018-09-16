@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 // import mri from 'mri';
 import http from 'http';
-import socketIO from 'socket-io';
+import socketIO from 'socket.io';
+import { HYDRATE, UPDATE, SEND } from '../constants';
 
 dotenv.config();
 
@@ -18,14 +19,14 @@ const message_log = [];
 
 io.on('connection', client => {
   // Hydrate this client
-  client.emit('hydrate', message_log);
+  client.emit(HYDRATE, message_log);
   // Emit an event to say a client has joined
-  client.broadcast.emit('update', 'Connected: ' + client.id);
+  client.broadcast.emit(UPDATE, 'Connected: ' + client.id);
 
   // Handle if this client sends a message
-  client.on('send', message => {
+  client.on(SEND, message => {
     const output = client.id + ' posted: ' + message;
-    io.emit('update', output);
+    io.emit(UPDATE, output);
     message_log.push(output);
   });
 });
@@ -35,4 +36,8 @@ server.on('listening', () => {
   console.log(`> Server started at ${SERVER_HOST}:${SERVER_PORT}`);
 });
 
-server.listen(SERVER_HOST, SERVER_PORT);
+server.on('error', e => {
+  console.log('Something went wrong ->', e.message);
+});
+
+server.listen(SERVER_PORT, SERVER_HOST);

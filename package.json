@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start:client": "parcel src/client/index.html",
-    "start:server": "node src/server/index.js",
+    "start:server": "babel-node src/server/index.js",
     "lint": "eslint src"
   },
   "dependencies": {
