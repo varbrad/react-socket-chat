@@ -1,12 +1,8 @@
-import './env'
 // import io from 'socket.io-client';
 import React from 'react';
 import { render } from 'react-dom';
 
-import App from './App';
-
-// Get env values
-const { SERVER_PORT, SERVER_HOST } = process.env;
+import App from './react/App';
 
 // Create socket connection
 // const socket = io('localhost:1235');
