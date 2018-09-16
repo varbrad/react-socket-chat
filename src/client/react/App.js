@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import MessageBar from './components/MessageBar';
+import { HYDRATE, UPDATE, SEND } from '../../constants';
 
 export default class App extends React.Component {
   static propTypes = {
@@ -17,8 +18,8 @@ export default class App extends React.Component {
       messages: []
     };
     //
-    props.on('hydrate', this.socketHydrate);
-    props.on('update', this.socketUpdate);
+    props.on(HYDRATE, this.socketHydrate);
+    props.on(UPDATE, this.socketUpdate);
   }
 
   socketHydrate = data => {
@@ -36,7 +37,7 @@ export default class App extends React.Component {
   changeMessage = value => this.setState({ message: value });
 
   sendMessage = () => {
-    this.props.emit('send', this.state.message);
+    this.props.emit(SEND, this.state.message);
     this.setState({ message: '' });
   };
 
