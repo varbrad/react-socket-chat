@@ -6,11 +6,12 @@
   "author": "Brad Davies <varbrad@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/app/index.html",
-    "server": "node src/server/index.js"
+    "start:client": "parcel src/app/index.html",
+    "start:server": "node src/server/index.js"
   },
   "dependencies": {
     "dotenv": "^6.0.0",
+    "mri": "^1.1.1",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
