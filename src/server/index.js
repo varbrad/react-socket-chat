@@ -40,4 +40,4 @@ server.on('error', e => {
   console.log('Something went wrong ->', e.message);
 });
 
-server.listen(SERVER_HOST, SERVER_PORT);
+server.listen(SERVER_PORT, SERVER_HOST);
