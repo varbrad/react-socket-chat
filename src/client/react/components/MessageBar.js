@@ -1,6 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class MessageBar extends React.Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
+  };
+
   handleChange = e => this.props.onChange(e.target.value);
 
   onKeyPress = e => {

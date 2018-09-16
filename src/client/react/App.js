@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import MessageBar from './components/MessageBar';
 
 export default class App extends React.Component {
+  static propTypes = {
+    emit: PropTypes.func.isRequired,
+    on: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     //
@@ -11,14 +17,14 @@ export default class App extends React.Component {
       messages: []
     };
     //
-    props.socket.on('hydrate', this.socketHydrate);
-    props.socket.on('update', this.socketUpdate);
+    props.on('hydrate', this.socketHydrate);
+    props.on('update', this.socketUpdate);
   }
 
   socketHydrate = data => {
-    this.setState(state => ({
+    this.setState({
       messages: data
-    }));
+    });
   };
 
   socketUpdate = data => {
@@ -59,6 +65,7 @@ export const withSocket = socket => {
   const props = {};
   //
   props.emit = (type, ...args) => socket.emit(type, ...args);
+  props.on = (type, callback) => socket.on(type, callback);
   //
-  return <App {...props} socket={socket} />;
+  return <App {...props} />;
 };

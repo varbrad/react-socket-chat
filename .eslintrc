@@ -5,10 +5,29 @@
     "prettier"
   ],
   "extends": [
-    "prettier"
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
   ],
   "rules": {
     "prettier/prettier": "error",
     "babel/semi": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "version": "16.5"
+    }
   }
 }

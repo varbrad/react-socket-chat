@@ -7,11 +7,14 @@
   "license": "MIT",
   "scripts": {
     "start:client": "parcel src/client/index.html",
-    "start:server": "node src/server/index.js"
+    "start:server": "node src/server/index.js",
+    "lint": "eslint src"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
     "dotenv": "^6.0.0",
     "mri": "^1.1.1",
+    "prop-types": "^15.6.2",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "socket.io": "^2.1.1"
@@ -25,6 +28,7 @@
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-babel": "^5.2.0",
     "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
     "node-sass": "^4.9.3",
     "parcel-bundler": "^1.9.7",
     "prettier": "^1.14.2"

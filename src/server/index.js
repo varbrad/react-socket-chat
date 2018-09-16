@@ -1,14 +1,18 @@
-require('dotenv').config();
-const mri = require('mri');
-const server = require('http').createServer();
-const io = require('socket.io')(server);
+import dotenv from 'dotenv';
+// import mri from 'mri';
+import http from 'http';
+import socketIO from 'socket-io';
+
+dotenv.config();
+
+const server = http.createServer();
+const io = socketIO(server);
 
 // Get command line arguments
-const args = mri(process.argv.slice(2));
+// const args = mri(process.argv.slice(2));
 
 // Get host and port from env file
-const HOST = process.env.SERVER_HOST;
-const PORT = process.env.SERVER_PORT;
+const { SERVER_HOST, SERVER_PORT } = process.env;
 
 const message_log = [];
 
@@ -28,7 +32,7 @@ io.on('connection', client => {
 
 // Event for when server succesfully starts
 server.on('listening', () => {
-  console.log(`> Server started at ${HOST}:${PORT}`);
+  console.log(`> Server started at ${SERVER_HOST}:${SERVER_PORT}`);
 });
 
-server.listen(PORT, HOST);
+server.listen(SERVER_HOST, SERVER_PORT);
